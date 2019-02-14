@@ -59,9 +59,7 @@ class FluidCube {
 				var x = i * SCALE;
 				var y = j * SCALE;
 				var d = this.density[IX(i, j)];
-				fill(d, 255);
-				// fill(255, 100);
-				// noStroke();
+				fill((d + 50) % 255, 200, d);
 				stroke('black');
 				rect(x, y, SCALE, SCALE);
 			}
@@ -71,7 +69,7 @@ class FluidCube {
   fade() {
     for (var i = 0; i < this.density.length; i++) {
       var d = this.density[i];
-      this.density[i] = constrain(d - 0.02, 0, 255);
+      this.density[i] = constrain(d - 0.04, 0, 255);
     }
   }
 }
