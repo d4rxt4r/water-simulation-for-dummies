@@ -57,7 +57,7 @@ class FluidCube {
 		for (var i = 0; i < N; i++) {
 			for (var j = 0; j < N; j++) {
 				var d = this.density[IX(i, j)];
-				stroke((d + 50) % 255, 255, d);
+				stroke((d + 50) % 255, 220, d);
 				point(i, j);
 			}
 		}
