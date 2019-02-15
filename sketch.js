@@ -1,16 +1,14 @@
-const N = 32,
-	SCALE = 10;
+const N = 64,
+	SCALE = 1,
+	DENSITY = 100;
 
 var t = 0,
 	iter = 1;
 
 function setup() {
+	frameRate(24);
 	cnv = createCanvas(N * SCALE, N * SCALE, P2D);
 	fluid = new FluidCube(1, 0.2, 0, 0.0000001);
-
-	// label = createDiv('Iterations');
-	// sliderIt = createSlider(0, 64, 1);
-	// sliderIt.parent(label);
 }
 
 function draw() {
@@ -18,25 +16,19 @@ function draw() {
 	var cx = (0.5 * width) / SCALE;
 	var cy = (0.5 * height) / SCALE;
 
-	fluid.addDensity(cx, cy, Math.floor(Math.random() * 150) + 50);
+	fluid.addDensity(cx, cy, DENSITY);
 
 	var deltaX = mouseX / SCALE - cx;
 	var deltaY = mouseY / SCALE - cy;
 	var rad = Math.atan2(deltaY, deltaX);
 
-	console.log(mouseX, mouseY, cx, cy);
-
-	// var angle = rad * (180 / PI);
 	var v = p5.Vector.fromAngle(rad);
 	v.mult(0.2);
-	t += 0.01;
 	fluid.addVelocity(cx, cy, v.x, v.y);
 
 	fluid.step();
 	fluid.render();
-	fluid.fade();
-
-	// iter = sliderIt.value();
+	// fluid.fade();
 }
 
 function IX(x, y) {
